@@ -98,3 +98,30 @@ retail-orders-analysis/
 - Running totals using `SUM() OVER(ORDER BY)`
 - `HAVING` clause for filtered aggregations
 - `NULLIF` to prevent division by zero errors
+
+## How to Run
+
+**Step 1 — Install dependencies**
+```bash
+pip install -r requirements.txt
+```
+
+**Step 2 — Set up Kaggle API**
+
+Download your `kaggle.json` API token from Kaggle → place it in `~/.kaggle/`
+
+**Step 3 — Set up SQL Server**
+
+Create a database in SSMS:
+```sql
+CREATE DATABASE OrdersAnalysisProject;
+```
+
+**Step 4 — Run the notebook**
+
+Open `orders_analysis.ipynb` in Jupyter and run all cells in order.
+The dataset will be downloaded automatically via the Kaggle API.
+
+**Step 5 — Run the SQL script**
+
+Open `orders_analysis.sql` in SSMS and run the queries.
