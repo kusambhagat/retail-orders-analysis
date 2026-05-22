@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data files (download from Kaggle instead)
+*.csv
+*.xlsx
+
+# IDEs
+.vscode/
+.idea/
