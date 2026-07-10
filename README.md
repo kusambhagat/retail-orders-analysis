@@ -89,6 +89,12 @@ retail-orders-analysis/
 - **Discounts vary by category:** Average discount levels differ across categories,
   suggesting inconsistent pricing strategy that could be optimised to improve margins
 
+  - **Data quality — Ship Mode:** 6 of 9,994 orders (0.06%) had missing Ship Mode
+  values disguised as three inconsistent placeholders ("Not Available", "unknown",
+  "N/A"), consolidated into a single "Unknown" label during cleaning. Kept as a
+  visible category rather than deleted — the orders are real and their revenue
+  belongs in totals; only the ship-mode attribute is missing.
+
 ---
 
 ## SQL Techniques Used
