@@ -8,8 +8,8 @@ profit patterns, regional performance, and year-over-year growth across product 
 ---
 
 ## Tools Used
-- Python (pandas, sqlalchemy) — data cleaning and loading
-- SQL Server (T-SQL) — business analysis and querying
+- Python (pandas, sqlalchemy) - data cleaning and loading
+- SQL Server (T-SQL) - business analysis and querying
 - Jupyter Notebook
 - GitHub
 
@@ -109,7 +109,7 @@ retail-orders-analysis/
 
 ## SQL Techniques Used
 - CTEs (Common Table Expressions)
-- Window functions — `DENSE_RANK`, `ROW_NUMBER`, `RANK`, `SUM() OVER()`
+- Window functions - `DENSE_RANK`, `ROW_NUMBER`, `RANK`, `SUM() OVER()`
 - `CASE WHEN` for year-based pivoting (2022 vs 2023 comparisons)
 - `PARTITION BY` for regional and category-level rankings
 - Running totals using `SUM() OVER(ORDER BY)`
