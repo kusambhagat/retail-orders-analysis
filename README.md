@@ -16,7 +16,7 @@ profit patterns, regional performance, and year-over-year growth across product 
 ---
 
 ## Dataset
-- **Source:** Kaggle — Retail Orders Dataset
+- **Source:** Kaggle - Retail Orders Dataset
 - **Link:** https://www.kaggle.com/datasets/ankitbansal06/retail-orders
 - **Size:** 9,994 orders across multiple US regions, categories, and customer segments
 
@@ -27,10 +27,10 @@ profit patterns, regional performance, and year-over-year growth across product 
 ```
 retail-orders-analysis/
 │
-├── orders_analysis.ipynb    — Python script: data cleaning and loading to SQL Server
-├── orders_analysis.sql      — SQL queries: business analysis and insights
-├── create_star_schema.sql   — DDL script: star schema with primary keys, unique and foreign key constraints
-└── README.md                — Project documentation
+├── orders_analysis.ipynb    - Python script: data cleaning and loading to SQL Server
+├── orders_analysis.sql      - SQL queries: business analysis and insights
+├── create_star_schema.sql   - DDL script: star schema with primary keys, unique and foreign key constraints
+└── README.md                - Project documentation
 ```
 
 ---
