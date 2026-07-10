@@ -95,6 +95,16 @@ retail-orders-analysis/
   visible category rather than deleted — the orders are real and their revenue
   belongs in totals; only the ship-mode attribute is missing.
 
+- **Data quality — revenue reconciliation:** Rebuilding the analysis in Power BI
+  initially produced −10M, then 11M revenue against the SQL pipeline's $2.21M.
+  Two root causes found: (1) Discount Percent is stored as whole numbers
+  (3 = 3%), not fractions — fixed with /100 in the DAX measure; (2) the measure
+  multiplied by Quantity while the SQL pipeline sums sale_price directly.
+  Aligned the dashboard to the SQL definition so all published figures
+  reconcile to the pound ($2,215,859; Technology $806,873). Open follow-up:
+  confirm whether sale_price in the source data represents unit price or
+  line total.
+
 ---
 
 ## SQL Techniques Used
