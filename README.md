@@ -12,6 +12,7 @@ profit patterns, regional performance, and year-over-year growth across product 
 - SQL Server (T-SQL) - business analysis and querying
 - Jupyter Notebook
 - GitHub
+- Power BI (DAX, star schema modelling) - dashboard and measures
 
 ---
 
@@ -30,6 +31,8 @@ retail-orders-analysis/
 ├── orders_analysis.ipynb    - Python script: data cleaning and loading to SQL Server
 ├── orders_analysis.sql      - SQL queries: business analysis and insights
 ├── create_star_schema.sql   - DDL script: star schema with primary keys, unique and foreign key constraints
+├── Retail_Sales_Analysis_Dashboard.pbix   - Power BI dashboard
+├── Retail_Sales_Analysis.jpg              - Dashboard screenshot
 └── README.md                - Project documentation
 ```
 
@@ -101,11 +104,60 @@ retail-orders-analysis/
   (3 = 3%), not fractions — fixed with /100 in the DAX measure; (2) the measure
   multiplied by Quantity while the SQL pipeline sums sale_price directly.
   Aligned the dashboard to the SQL definition so all published figures
-  reconcile to the pound ($2,215,859; Technology $806,873). Open follow-up:
-  confirm whether sale_price in the source data represents unit price or
-  line total.
+  reconcile to the pound ($2,215,859; Technology $806,873).
+  **Resolved:** the single-row test in the Power BI build (see Dashboard section below) confirmed sale_price is a line total, not unit price.
 
 ---
+
+## Power BI Dashboard
+
+This dashboard was not originally part of this project, but I built it to
+turn the SQL findings into quick visual insights. I created these four
+tables (fact_orders, dim_product, dim_geography, dim_date), with all
+measures reconciled against the SQL analysis. These tables were generated
+from the original dataset. I deep-dived into the data to understand each
+aspect and find the WHY behind changes in the numbers, and tackled those
+problems to align the results shown in the SQL scripts with the dashboard.
+The most challenging part was cross-verifying the results between the SQL
+scripts and the dashboard — the real test was learning how to handle
+problems when the numbers don't match what you expected.
+
+### Measures built (DAX)
+
+- **Total Revenue** — SUMX over line-level price after discount
+- **Total Profit** — SUMX of (discounted price − cost) per line
+- **Profit Margin** — DIVIDE([Total Profit], [Total Revenue])
+- **Total Orders** — DISTINCTCOUNT(Order Id), counting the business
+  entity rather than table rows
+- **Region Rank** — RANKX with a HASONEVALUE fix for the Total row
+
+### Key findings
+
+- **Technology leads revenue with 36.4%** ($806.9K) despite Office
+  Supplies selling the most units — a high-value vs high-volume split
+- **Revenue grew 2.25% year over year** ($1.096M in 2022 to $1.120M in 2023)
+- **No November holiday spike** — retail sales usually spike in November,
+  but in this dataset revenue dips to $75K in November before recovering
+  to $103K in December, contradicting the usual seasonality assumption
+- **Technology is also the most profitable category** - 9.47% margin
+  vs 9.26% overall
+- **West leads every region** with 12,266 units sold, making it a
+  candidate region for business expansion
+
+### Data quality note: the $1.04M bug
+
+My first Total Profit measure returned $1.04M which is a 47% margin, which made
+no sense for retail. Testing a single row by hand and reconciling against
+my SQL results ($205K) revealed the cause: **the money columns in this
+dataset are line totals, not per-unit prices**, so multiplying by
+Quantity double-counted volume. Removing Quantity from the measure
+reconciled Power BI to SQL exactly ($205.17K).
+
+Lesson: verify the grain of every column before writing measures, and
+always reconcile a new measure against an independent source.
+
+***Note: Superstore is a sample dataset, so findings describe the data
+rather than a real business.***
 
 ## SQL Techniques Used
 - CTEs (Common Table Expressions)
