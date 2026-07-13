@@ -1,4 +1,4 @@
-# Retail Orders Analysis — SQL + Python
+# Retail Orders Analysis - SQL + Python + PowerBI
 
 ## About the Project
 An end-to-end data analysis project where I used Python to clean raw retail orders data
