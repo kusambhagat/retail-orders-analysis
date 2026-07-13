@@ -122,6 +122,8 @@ The most challenging part was cross-verifying the results between the SQL
 scripts and the dashboard — the real test was learning how to handle
 problems when the numbers don't match what you expected.
 
+ ![Sales Overview](Retail_Sales_Analysis.jpg)
+ 
 ### Measures built (DAX)
 
 - **Total Revenue** — SUMX over line-level price after discount
